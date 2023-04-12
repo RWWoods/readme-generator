@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require('./generateMarkdown')
 // TODO: Create an array of questions for user input
 const questions = [];
 inquirer
@@ -17,30 +18,56 @@ inquirer
         },
         {
             type: 'input',
-            message: 'What do you want your bio to be?',
-            name: 'bio',
+            message: 'What do you want your Table of Contents to include?',
+            name: 'table',
         },
         {
             type: 'input',
-            message: 'What is your linkedIn url?',
-            name: 'LinkedIn',
+            message: 'What are your steps to install your project?',
+            name: 'install',
         },
         {
             type: 'input',
-            message: 'What is your GitHub url?',
-            name: 'GitHub',
+            message: 'How do you use your project?',
+            name: 'usage',
+        },
+        {
+            type: 'list',
+            message: 'What license are you using?',
+            name: 'license',
+            options: ['MIT License', 'Creative Commons Zero v1.0 Universal', 'Mozilla Public License 2.0']
+        },
+        {
+            type: 'input',
+            message: 'How should developers contribute?',
+            name: 'contribute',
+        },
+        {
+            type: 'input',
+            message: 'What tests should this project use?',
+            name: 'tests',
+        },
+        {
+            type: 'input',
+            message: 'What is your email address?',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'What is your GitHub username',
+            name: 'github',
         },
     ])
     .then((response) => {
 
 
-        writeHTML("index.html", response) 
+        writeReadMe("README.md", response) 
 
     });
 
-function writeHTML(fileName, data) {
-    const generatedHTML = htmlFile(data)
-    fs.writeFile(fileName, generatedHTML, (err) => err ? console.error(err) : console.log("success"))
+function writeReadMe(fileName, data) {
+    const generatedReadMe = generateMarkdown(data)
+    fs.writeFile(fileName, generatedReadMe, (err) => err ? console.error(err) : console.log("success"))
 }
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
