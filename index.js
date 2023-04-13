@@ -18,11 +18,6 @@ inquirer
         },
         {
             type: 'input',
-            message: 'What do you want your Table of Contents to include?',
-            name: 'table',
-        },
-        {
-            type: 'input',
             message: 'What are your steps to install your project?',
             name: 'install',
         },
@@ -35,7 +30,7 @@ inquirer
             type: 'list',
             message: 'What license are you using?',
             name: 'license',
-            options: ['MIT License', 'Creative Commons Zero v1.0 Universal', 'Mozilla Public License 2.0']
+            choices: ['MIT License', 'Creative Commons Zero v1.0 Universal', 'Mozilla Public License 2.0'],
         },
         {
             type: 'input',
@@ -70,8 +65,9 @@ function writeReadMe(fileName, data) {
     fs.writeFile(fileName, generatedReadMe, (err) => err ? console.error(err) : console.log("success"))
 }
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
+// function writeToFile(fileName, data) {
+// generateMarkdown(data);
+// }
 // TODO: Create a function to initialize app
 function init() {}
 
